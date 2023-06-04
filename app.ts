@@ -4,7 +4,6 @@
 //   age: 20
 // }
 
-
 // Not efficient. Better to let TypeScript infer the types themselves for simple types
 // const person: {
 //   name: string;
@@ -17,6 +16,15 @@
 const person = {
   name: 'Gery',
   age: 20,
+  hobbies: ['Sports', 'Cooking'],
 };
 
+let favoriteActivities: string[];
+favoriteActivities = ['Sports'];
+
 console.log(person.name);
+
+for (const hobby of person.hobbies) {
+  console.log(hobby.toUpperCase());
+  // console.log(hobby.map()); // Error because TypeScript inferences knows that the map() method are not callable from a string
+}
