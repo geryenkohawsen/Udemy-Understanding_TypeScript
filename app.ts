@@ -1,15 +1,22 @@
-function add(n1: number, n2: number, showResult: boolean) {
-  // if (typeof n1 !== 'number' || typeof n2 !== 'number') {
-  //   throw new Error("Incorrect input");
-  // }
-  if (showResult) {
-    return n1 + n2;
-  }
-}
+// Will throw error when trying to access properties because generic type properties are not defined
+// const person: object = {
+//   name: 'Gery',
+//   age: 20
+// }
 
-const number1 = 5;
-const number2 = 2.8;
-const printResult = true;
 
-const result = add(number1, number2, printResult);
-console.log(result);
+// Not efficient. Better to let TypeScript infer the types themselves for simple types
+// const person: {
+//   name: string;
+//   age: number;
+// } = {
+//   name: 'Gery',
+//   age: 20,
+// };
+
+const person = {
+  name: 'Gery',
+  age: 20,
+};
+
+console.log(person.name);
