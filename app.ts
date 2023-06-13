@@ -25,20 +25,34 @@
 //   role: [2, 'author']
 // };
 
-enum Role {ADMIN, READ_ONLY, AUTHOR} 
-enum Role2 {ADMIN = 5, READ_ONLY, AUTHOR} // can choose your own starting number
-enum Role3 {ADMIN = 'ADMIN', READ_ONLY = 100, AUTHOR = 'xyz'} // can use string also
+enum Role {
+  ADMIN,
+  READ_ONLY,
+  AUTHOR,
+}
+enum Role2 {
+  ADMIN = 5,
+  READ_ONLY,
+  AUTHOR,
+} // can choose your own starting number
+enum Role3 {
+  ADMIN = 'ADMIN',
+  READ_ONLY = 100,
+  AUTHOR = 'xyz',
+} // can use string also
 
 const person = {
   name: 'Gery',
   age: 20,
   hobbies: ['Sports', 'Cooking'],
-  role: Role.ADMIN
+  role: Role.ADMIN,
 };
 
 // person.role.push('admin')
 // person.role[1] = 10
 
+// let favoriteActivities: any;
+// let favoriteActivities: any[];
 let favoriteActivities: string[];
 favoriteActivities = ['Sports'];
 
