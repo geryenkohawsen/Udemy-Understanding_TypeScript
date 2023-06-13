@@ -1,66 +1,15 @@
-// Will throw error when trying to access properties because generic type properties are not defined
-// const person: object = {
-//   name: 'Gery',
-//   age: 20
-// }
-
-// Not efficient. Better to let TypeScript infer the types themselves for simple types
-// const person: {
-//   name: string;
-//   age: number;
-// } = {
-//   name: 'Gery',
-//   age: 20,
-// };
-
-// const person: {
-//   name: string;
-//   age: number;
-//   hobbies: string[];
-//   role: [number, string]
-// } = {
-//   name: 'Gery',
-//   age: 20,
-//   hobbies: ['Sports', 'Cooking'],
-//   role: [2, 'author']
-// };
-
-enum Role {
-  ADMIN,
-  READ_ONLY,
-  AUTHOR,
-}
-enum Role2 {
-  ADMIN = 5,
-  READ_ONLY,
-  AUTHOR,
-} // can choose your own starting number
-enum Role3 {
-  ADMIN = 'ADMIN',
-  READ_ONLY = 100,
-  AUTHOR = 'xyz',
-} // can use string also
-
-const person = {
-  name: 'Gery',
-  age: 20,
-  hobbies: ['Sports', 'Cooking'],
-  role: Role.ADMIN,
-};
-
-// person.role.push('admin')
-// person.role[1] = 10
-
-// let favoriteActivities: any;
-// let favoriteActivities: any[];
-let favoriteActivities: string[];
-favoriteActivities = ['Sports'];
-
-console.log(person.name);
-
-for (const hobby of person.hobbies) {
-  console.log(hobby.toUpperCase());
-  // console.log(hobby.map()); // Error because TypeScript inferences knows that the map() method are not callable from a string
+function combine(input1: number | string, input2: number | string) {
+  let result;
+  if (typeof input1 === 'number' && typeof input2 === 'number') {
+    result = input1 + input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
+  return result;
 }
 
-if (person.role === Role.ADMIN) console.log('Role is ADMIN!');
+const combinedAges = combine(13, 23);
+console.log(combinedAges);
+
+const combinedNames = combine('Max', 'Max');
+console.log(combinedNames);
