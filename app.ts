@@ -1,34 +1,11 @@
-// store union types in custom types! (type alias)
-type Combinable = number | string;
-type ConversionDescriptor = 'as-number' | 'as-text';
-
-function combine(
-  input1: Combinable,
-  input2: Combinable,
-  resultConversion: ConversionDescriptor
-) {
-  let result;
-
-  // calculation
-  if (typeof input1 === 'number' && typeof input2 === 'number') {
-    result = input1 + input2;
-  } else {
-    result = input1.toString() + input2.toString();
-  }
-
-  // result type conversion
-  if (resultConversion === 'as-number') {
-    return +result;
-  } else {
-    return result;
-  }
+function add(n1: number, n2: number): number {
+  return n1 + n2;
 }
 
-const combinedAges = combine(13, 23, 'as-number');
-console.log(combinedAges);
+function printResult(num: number) {
+  console.log('Result: ' + num);
+}
 
-const combinedStringAges = combine('13', '23', 'as-number');
-console.log(combinedStringAges);
+printResult(add(5, 12));
 
-const combinedNames = combine('Max', 'Max', 'as-text');
-console.log(combinedNames);
+let test: undefined;
