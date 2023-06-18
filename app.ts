@@ -9,3 +9,10 @@ userInput = 'Max';
 if (typeof userInput === 'string') {
   userName = userInput;
 }
+
+function generateError(message: string, code: number): never { // this will NEVER return anything because it will break/crash our script
+  throw { message: message, errorCode: code };
+}
+
+const result = generateError('Error', 500);
+console.log(result);

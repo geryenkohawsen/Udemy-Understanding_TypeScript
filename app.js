@@ -1,19 +1,14 @@
-function add(n1, n2) {
-    return n1 + n2;
+var userInput; // any is the most flexible type, it disable all type checking
+var userName;
+userInput = 5;
+userInput = 'Max';
+// unknown is better than any because it still enable type checking
+// if you know what to do with a data eventually without knowing the actually type of the data, unknown is better
+if (typeof userInput === 'string') {
+    userName = userInput;
 }
-function printResult(num) {
-    console.log('Result: ' + num);
+function generateError(message, code) {
+    throw { message: message, errorCode: code };
 }
-function addAndHandle(n1, n2, cb) {
-    var result = n1 + n2;
-    cb(result);
-}
-printResult(add(5, 12));
-var combineValues;
-combineValues = add;
-// combineValues = printResult;
-console.log(combineValues(8, 8));
-// let test: undefined;
-addAndHandle(10, 20, function (result) {
-    console.log(result);
-});
+var result = generateError('Error', 500);
+console.log(result);
