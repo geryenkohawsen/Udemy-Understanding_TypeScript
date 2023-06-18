@@ -1,27 +1,11 @@
-function add(n1: number, n2: number): number {
-  return n1 + n2;
+let userInput: unknown; // any is the most flexible type, it disable all type checking
+let userName: string;
+
+userInput = 5;
+userInput = 'Max';
+
+// unknown is better than any because it still enable type checking
+// if you know what to do with a data eventually without knowing the actually type of the data, unknown is better
+if (typeof userInput === 'string') {
+  userName = userInput;
 }
-
-function printResult(num: number): void {
-  console.log('Result: ' + num);
-}
-
-function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
-  const result = n1 + n2
-  cb(result)
-}
-
-printResult(add(5, 12));
-
-let combineValues: (a: number, b: number) => number;
-
-combineValues = add;
-// combineValues = printResult;
-
-console.log(combineValues(8, 8));
-
-// let test: undefined;
-
-addAndHandle(10, 20, (result) => {
-  console.log(result);
-})
