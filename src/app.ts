@@ -16,7 +16,7 @@
 // }
 // console.log(isOld); // Error in TS but not in JS
 
-const add = (a: number, b: number) => a + b;
+const add = (a: number, b: number = 1) => a + b; // always set default argument on the right because JS will not skip the first default argument
 
 const printOutput = (output: string | number) => console.log(output);
 
@@ -27,3 +27,4 @@ if (button) {
 }
 
 printOutput(add(5, 2));
+printOutput(add(1));
