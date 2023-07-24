@@ -2,6 +2,8 @@
 // userName = 'const error';
 // let age = 30;
 
+import { Agent } from 'http';
+
 // age = 29;
 
 // function add(a: number, b: number) {
@@ -28,3 +30,16 @@ if (button) {
 
 printOutput(add(5, 2));
 printOutput(add(1));
+
+const hobbies = ['Sports', 'Cooking'];
+const activeHobbies = ['Hiking'];
+
+activeHobbies.push(...hobbies);
+
+// spread operator also works on objects
+const person = {
+  name: 'Gery',
+  age: 24,
+};
+
+const copiedPerson = { ...person };
