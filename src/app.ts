@@ -1,8 +1,8 @@
-// Code goes here!
 class Department {
-  name: string = 'DEFAULT';
+  // name: string = 'DEFAULT'; // an initializer value is not mandatory
+  name: string;
 
-  // an method that is executed when the object is initiated
+  // a method that is executed when the object is initiated
   constructor(n: string) {
     this.name = n;
   }
