@@ -1,8 +1,6 @@
-// const userName = 'Gery';
-// userName = 'const error';
+// const userName = 'Max';
+// // userName = 'Maximilian';
 // let age = 30;
-
-import { Agent } from 'http';
 
 // age = 29;
 
@@ -11,32 +9,32 @@ import { Agent } from 'http';
 //   result = a + b;
 //   return result;
 // }
-// console.log(result); // let and const is define in using block scope
 
 // if (age > 20) {
-//   var isOld = true; // var is defined using function adn global scope
+//   let isOld = true;
 // }
-// console.log(isOld); // Error in TS but not in JS
 
-// const add = (a: number, b: number = 1) => a + b; // always set default argument on the right because JS will not skip the first default argument
+// console.log(isOld);
 
-// const printOutput = (output: string | number) => console.log(output);
+// console.log(result);
+
+// const add = (a: number, b: number = 1) => a + b;
+
+// const printOutput: (a: number | string) => void = output => console.log(output);
 
 // const button = document.querySelector('button');
 
 // if (button) {
-//   button.addEventListener('click', (event) => console.log(event));
+//   button.addEventListener('click', event => console.log(event));
 // }
 
-// printOutput(add(5, 2));
-// printOutput(add(1));
+// printOutput(add(5));
 
 const hobbies = ['Sports', 'Cooking'];
 const activeHobbies = ['Hiking'];
 
 activeHobbies.push(...hobbies);
 
-// spread operator also works on objects
 const person = {
   name: 'Gery',
   age: 24,
@@ -50,5 +48,13 @@ const add = (...numbers: number[]) => {
   }, 0);
 };
 
-const addedNumbers = add(5, 101, 2, 3, 3.7);
+const addedNumbers = add(5, 10, 2, 3.7);
 console.log(addedNumbers);
+
+const [hobby1, hobby2, ...remainingHobbies] = hobbies;
+
+console.log(hobbies, hobby1, hobby2);
+
+const { name: userName, age } = person;
+
+console.log(userName, age, person);
