@@ -40,8 +40,25 @@ class ITDepartment extends Department {
 }
 
 class AccountingDepartment extends Department {
+  private lastReport: string;
+
+  get mostRecentReport() {
+    if (this.lastReport) {
+      return this.lastReport;
+    }
+    throw new Error('No report found.');
+  }
+
+  set mostRecentReport(value: string) {
+    if (!value) {
+      throw new Error('Please pass in a valid value!');
+    }
+    this.addReport(value);
+  }
+
   constructor(id: string, private reports: string[]) {
     super(id, 'Accounting Dep.'); // always call super first before using the [this] keyword
+    this.lastReport = reports[0];
   }
 
   // you can overwrite the methods of the base class
@@ -54,6 +71,7 @@ class AccountingDepartment extends Department {
 
   addReport(text: string) {
     this.reports.push(text);
+    this.lastReport = text;
   }
 
   printReports() {
@@ -75,7 +93,9 @@ console.log(it);
 
 const accounting = new AccountingDepartment('d2', []);
 
+accounting.mostRecentReport = 'Year End Report'; // for getter & setter, access it normally just like a property
 accounting.addReport('Something went wrong...');
+console.log(accounting.mostRecentReport); // for getter & setter, access it normally just like a property
 accounting.printReports();
 
 accounting.addEmployee('Max');
