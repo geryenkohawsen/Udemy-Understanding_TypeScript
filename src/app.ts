@@ -5,7 +5,7 @@ class Department {
   private employees: string[] = [];
 
   // a method that is executed when the object is initiated
-  constructor(private id: string, public name: string) {
+  constructor(private readonly id: string, public name: string) {
     // this.id = id;
     // this.name = n;
   }
@@ -16,6 +16,7 @@ class Department {
   }
 
   addEmployee(employee: string) {
+    // this.id = 'changed id';
     this.employees.push(employee);
   }
 
