@@ -2,7 +2,9 @@ class Department {
   // name: string = 'DEFAULT'; // an initializer value is not mandatory
   // private id: string;
   // private name: string; // public keyword is the DEFAULT setting
-  private employees: string[] = [];
+
+  // private employees: string[] = [];
+  protected employees: string[] = []; // protected is like private but allows any class that extends this class to access this property
 
   // a method that is executed when the object is initiated
   constructor(private readonly id: string, public name: string) {
@@ -42,6 +44,14 @@ class AccountingDepartment extends Department {
     super(id, 'Accounting Dep.'); // always call super first before using the [this] keyword
   }
 
+  // you can overwrite the methods of the base class
+  addEmployee(name: string) {
+    if (name === 'Max') {
+      return;
+    }
+    this.employees.push(name);
+  }
+
   addReport(text: string) {
     this.reports.push(text);
   }
@@ -52,7 +62,6 @@ class AccountingDepartment extends Department {
 }
 
 const it = new ITDepartment('d1', ['Max']);
-
 it.addEmployee('Max');
 it.addEmployee('Tom');
 
@@ -65,8 +74,13 @@ it.printEmployeeInformation();
 console.log(it);
 
 const accounting = new AccountingDepartment('d2', []);
+
 accounting.addReport('Something went wrong...');
 accounting.printReports();
+
+accounting.addEmployee('Max');
+accounting.addEmployee('Max2');
+accounting.printEmployeeInformation();
 
 // const accountingCopy = { name: 'Dummy', describe: accounting.describe };
 
