@@ -26,16 +26,47 @@ class Department {
   }
 }
 
-const accounting = new Department('d1', 'Accounting');
+// when there's no dedicated constructor in the subclass,
+// the constructor of the parent class will be use
+class ITDepartment extends Department {
+  public admins: string[];
 
-accounting.addEmployee('Max');
-accounting.addEmployee('Tom');
+  constructor(id: string, admins: string[]) {
+    super(id, 'IT Dep.'); // always call super first before using the [this] keyword
+    this.admins = admins;
+  }
+}
 
-// accounting.employees[2] = 'Anna';
+class AccountingDepartment extends Department {
+  constructor(id: string, private reports: string[]) {
+    super(id, 'Accounting Dep.'); // always call super first before using the [this] keyword
+  }
 
-console.log(accounting);
-accounting.describe();
-accounting.printEmployeeInformation();
+  addReport(text: string) {
+    this.reports.push(text);
+  }
+
+  printReports() {
+    console.log(this.reports);
+  }
+}
+
+const it = new ITDepartment('d1', ['Max']);
+
+it.addEmployee('Max');
+it.addEmployee('Tom');
+
+// it.employees[2] = 'Anna';
+
+it.describe();
+it.name = 'NEW IT DEP.';
+it.printEmployeeInformation();
+
+console.log(it);
+
+const accounting = new AccountingDepartment('d2', []);
+accounting.addReport('Something went wrong...');
+accounting.printReports();
 
 // const accountingCopy = { name: 'Dummy', describe: accounting.describe };
 
