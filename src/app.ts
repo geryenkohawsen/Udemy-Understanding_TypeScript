@@ -1,4 +1,5 @@
 class Department {
+  static fiscalYear = 2020;
   // name: string = 'DEFAULT'; // an initializer value is not mandatory
   // private id: string;
   // private name: string; // public keyword is the DEFAULT setting
@@ -10,6 +11,17 @@ class Department {
   constructor(private readonly id: string, public name: string) {
     // this.id = id;
     // this.name = n;
+
+    // the [this] keyword refers to the instance of the class,
+    // where[static] refers to the class itself
+    // console.log(this.fiscalYear);
+
+    // We have to access static properties through the class itself
+    console.log(Department.fiscalYear);
+  }
+
+  static createEmployee(name: string) {
+    return { name: name };
   }
 
   // Make sure to catch unwanted behavior in TS
@@ -78,6 +90,9 @@ class AccountingDepartment extends Department {
     console.log(this.reports);
   }
 }
+
+const employee1 = Department.createEmployee('Max');
+console.log(employee1, Department.fiscalYear);
 
 const it = new ITDepartment('d1', ['Max']);
 it.addEmployee('Max');
