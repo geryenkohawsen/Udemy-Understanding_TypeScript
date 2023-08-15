@@ -1,4 +1,4 @@
-class Department {
+abstract class Department {
   static fiscalYear = 2020;
   // name: string = 'DEFAULT'; // an initializer value is not mandatory
   // private id: string;
@@ -8,16 +8,14 @@ class Department {
   protected employees: string[] = []; // protected is like private but allows any class that extends this class to access this property
 
   // a method that is executed when the object is initiated
-  constructor(private readonly id: string, public name: string) {
+  constructor(protected readonly id: string, public name: string) {
     // this.id = id;
     // this.name = n;
-
     // the [this] keyword refers to the instance of the class,
     // where[static] refers to the class itself
     // console.log(this.fiscalYear);
-
     // We have to access static properties through the class itself
-    console.log(Department.fiscalYear);
+    // console.log(Department.fiscalYear);
   }
 
   static createEmployee(name: string) {
@@ -25,9 +23,7 @@ class Department {
   }
 
   // Make sure to catch unwanted behavior in TS
-  describe(this: Department) {
-    console.log('Department: ' + this.id + this.name);
-  }
+  abstract describe(this: Department): void;
 
   addEmployee(employee: string) {
     // this.id = 'changed id';
@@ -48,6 +44,10 @@ class ITDepartment extends Department {
   constructor(id: string, admins: string[]) {
     super(id, 'IT Dep.'); // always call super first before using the [this] keyword
     this.admins = admins;
+  }
+
+  describe() {
+    console.log('IT Department - ID: ' + this.id);
   }
 }
 
@@ -71,6 +71,10 @@ class AccountingDepartment extends Department {
   constructor(id: string, private reports: string[]) {
     super(id, 'Accounting Dep.'); // always call super first before using the [this] keyword
     this.lastReport = reports[0];
+  }
+
+  describe() {
+    console.log('describe AccDept → ', `${this.id} - ${this.name}`);
   }
 
   // you can overwrite the methods of the base class
@@ -115,8 +119,10 @@ accounting.printReports();
 
 accounting.addEmployee('Max');
 accounting.addEmployee('Max2');
-accounting.printEmployeeInformation();
+// accounting.printEmployeeInformation();
 
 // const accountingCopy = { name: 'Dummy', describe: accounting.describe };
 
 // accountingCopy.describe();
+
+accounting.describe();
