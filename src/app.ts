@@ -53,6 +53,7 @@ class ITDepartment extends Department {
 
 class AccountingDepartment extends Department {
   private lastReport: string;
+  private static instance: AccountingDepartment;
 
   get mostRecentReport() {
     if (this.lastReport) {
@@ -68,9 +69,19 @@ class AccountingDepartment extends Department {
     this.addReport(value);
   }
 
-  constructor(id: string, private reports: string[]) {
+  // SINGLETON PATTERN
+  // Only one instance can be created from one class
+  private constructor(id: string, private reports: string[]) {
     super(id, 'Accounting Dep.'); // always call super first before using the [this] keyword
     this.lastReport = reports[0];
+  }
+
+  static getInstance() {
+    if (AccountingDepartment.instance) {
+      return this.instance;
+    }
+    this.instance = new AccountingDepartment('d2', []);
+    return this.instance;
   }
 
   describe() {
@@ -110,7 +121,8 @@ it.printEmployeeInformation();
 
 console.log(it);
 
-const accounting = new AccountingDepartment('d2', []);
+// const accounting = new AccountingDepartment('d2', []);
+const accounting = AccountingDepartment.getInstance();
 
 accounting.mostRecentReport = 'Year End Report'; // for getter & setter, access it normally just like a property
 accounting.addReport('Something went wrong...');
@@ -126,3 +138,7 @@ accounting.addEmployee('Max2');
 // accountingCopy.describe();
 
 accounting.describe();
+
+const accounting2 = AccountingDepartment.getInstance();
+accounting2.addEmployee('SINGLETON');
+console.log('SINGLETON PATTERN', accounting, accounting2);
