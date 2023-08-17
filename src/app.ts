@@ -1,4 +1,19 @@
 /**
+ * 1. an interface is also usable to define a function because a function is technically an object
+ * 2. custom types is more commonly used to define a function
+ */
+// type AddFn = (a: number, b: number) => number;
+interface AddFn {
+  (a: number, b: number): number;
+}
+
+let add: AddFn;
+
+add = (n1: number, n2: number) => {
+  return n1 + n2;
+};
+
+/**
  * 1. interface describe the structure of an object
  * 2. interface and custom type are not the same. Type can store union types but interface can be implemented by a class
  */
