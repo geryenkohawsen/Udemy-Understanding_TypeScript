@@ -3,9 +3,18 @@
  * 2. interface and custom type are not the same. Type can store union types but interface can be implemented by a class
  */
 
-interface Greetable {
+interface Named {
   readonly name: string;
-  // age: number;
+}
+
+interface Aged {
+  age: number;
+}
+
+/**
+ * class can only extends one other class but interface can extends multiple interfaces
+ */
+interface Greetable extends Named, Aged {
   greet(phrase: string): void;
 }
 
