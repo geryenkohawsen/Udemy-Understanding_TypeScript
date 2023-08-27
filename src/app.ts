@@ -21,3 +21,54 @@ type Combinable = string | number;
 type Numeric = number | boolean;
 
 type Universal = Combinable & Numeric;
+
+function add(a: Combinable, b: Combinable) {
+	if (typeof a === 'string' || typeof b === 'string') {
+		return a.toString() + b.toString();
+	}
+	return a + b;
+}
+
+type UnknownEmployee = Employee | Admin;
+
+// use [in] to type guard object
+function printEmployeeInformation(emp: UnknownEmployee) {
+	console.log('Name --> ', emp.name);
+	if ('privileges' in emp) {
+		console.log('Privileges --> ', emp.privileges);
+	}
+	if ('startDate' in emp) {
+		console.log('startDate --> ', emp.startDate);
+	}
+}
+
+printEmployeeInformation(e1);
+
+class Car {
+	drive() {
+		console.log('Driving');
+	}
+}
+
+class Truck {
+	drive() {
+		console.log('Driving a truck');
+	}
+
+	loadCargo(amount: number) {
+		console.log('Loading cargo --> ', amount);
+	}
+}
+
+type Vehicle = Car | Truck;
+
+const v1 = new Car();
+const v2 = new Truck();
+
+// use [isntanceof] to type guard object that is instantiated from a class
+function useVehicle(vehicle: Vehicle) {
+	vehicle.drive();
+	if (vehicle instanceof Truck) {
+		vehicle.loadCargo(1000);
+	}
+}
