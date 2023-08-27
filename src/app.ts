@@ -1,71 +1,23 @@
-/**
- * 1. an interface is also usable to define a function because a function is technically an object
- * 2. custom types is more commonly used to define a function
- */
-// type AddFn = (a: number, b: number) => number;
-interface AddFn {
-  (a: number, b: number): number;
-}
-
-let add: AddFn;
-
-add = (n1: number, n2: number) => {
-  return n1 + n2;
+type Admin = {
+	name: string;
+	privileges: string[];
 };
 
-/**
- * 1. interface describe the structure of an object
- * 2. interface and custom type are not the same. Type can store union types but interface can be implemented by a class
- */
+type Employee = {
+	name: string;
+	startDate: Date;
+};
 
-interface Named {
-  readonly name?: string;
-  outputName?: string;
-}
+// interface ElevatedEmployee extends Employee, Admin {}
 
-interface Aged {
-  age: number;
-}
+type ElevatedEmployee = Admin & Employee;
 
-/**
- * class can only extends one other class but interface can extends multiple interfaces
- */
-interface Greetable extends Named, Aged {
-  greet(phrase: string): void;
-}
+const e1: ElevatedEmployee = {
+	name: 'Max',
+	privileges: ['create-server'],
+	startDate: new Date(),
+};
+type Combinable = string | number;
+type Numeric = number | boolean;
 
-class Person implements Greetable {
-  name?: string;
-  age = 30;
-
-  constructor(n?: string) {
-    if (n) {
-      this.name = n;
-    }
-  }
-
-  greet(phrase?: string) {
-    if (this.name) {
-      console.log(phrase + ' ' + this.name);
-    } else {
-      console.log('Hi!');
-    }
-  }
-}
-
-let user1: Greetable;
-
-user1 = new Person('Max');
-const user2 = new Person();
-// user1.name = 'Manu';
-
-// user1 = {
-//   name: 'Max',
-//   age: 30,
-//   greet(phrase: string) {
-//     console.log(phrase + ' ' + this.name);
-//   },
-// };
-
-user1.greet('HI! I am');
-user2.greet();
+type Universal = Combinable & Numeric;
