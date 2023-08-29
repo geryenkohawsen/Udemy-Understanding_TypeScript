@@ -34,7 +34,20 @@ function add(a: Combinable, b: Combinable) {
 }
 
 const result = add('Geryenko', 'Hawsen');
+result.split(' ');
 
+const fetchedUserData = {
+	id: 'u1',
+	name: 'Max',
+	job: {
+		title: 'CEO',
+		description: 'my own company',
+	},
+};
+
+console.log(fetchedUserData?.job?.title);
+
+/*
 type UnknownEmployee = Employee | Admin;
 
 // use [in] to type guard object
@@ -135,3 +148,4 @@ const errorBag: ErrorContainer = {
 	email: 'Not a valid email',
 	username: 'Must start with a capital character!',
 };
+*/
