@@ -47,6 +47,13 @@ const fetchedUserData = {
 
 console.log(fetchedUserData?.job?.title);
 
+const userInput = undefined;
+
+// const storedData = userInput || 'DEFAULT'; // if userInput is an empty string it will not go to the fallback value
+const storedData = userInput ?? 'DEFAULT';
+
+console.log('storedData --> ', storedData);
+
 /*
 type UnknownEmployee = Employee | Admin;
 
