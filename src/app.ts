@@ -14,12 +14,12 @@
 // 	// data.split(' ');
 // });
 
-function merge<T extends object, U>(objA: T, objB: U) {
+function merge<T extends object, U extends object>(objA: T, objB: U) {
 	return Object.assign(objA, objB);
 }
 
-const mergedObj1 = merge({ name: 'Gery', hobbies: ['Sports'] }, { age: 24 });
+const mergedObj1 = merge({ name: 'Gery', hobbies: ['Sports'] }, 24);
 const mergedObj2 = merge({ name: 'Gery' }, { age: 24 });
 
-console.log('mer1 --> ', mergedObj1.hobbies);
+console.log('mer1 --> ', mergedObj1);
 // console.log('mer2 --> ', mergedObj2.hobbies); // no hobbies property
