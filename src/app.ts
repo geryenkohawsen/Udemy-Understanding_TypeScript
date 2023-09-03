@@ -1,11 +1,13 @@
 // Most decorator use uppercase for the starting letter
-function Logger(constructor: Function) {
-	console.log('Logging...');
-	console.log('constructor --> ', constructor);
+function Logger(logString: string) {
+	return function (constructor: Function) {
+		console.log(logString);
+		console.log('constructor --> ', constructor);
+	};
 }
 
 // decorator are launch when your class is DEFINED not when it is INSTANTIATED
-@Logger
+@Logger('LOGING - PERSON')
 class Person {
 	name = 'Gery';
 
