@@ -36,3 +36,35 @@ class Person {
 const pers = new Person();
 
 console.log('pers --> ', pers);
+
+//  --
+
+//  when adding a decorator to a property, it needs 2 arguments
+//  Again, the constructor will execute when the property is DEFINED
+function Log(target: any, propertyName: string | Symbol) {
+	console.log('Property decorator!!');
+	console.log(target, propertyName);
+}
+
+class Product {
+	@Log
+	title: string;
+	private _price: number;
+
+	set price(val: number) {
+		if (val > 0) {
+			this._price = val;
+		} else {
+			throw new Error('Invalid price - should be positive');
+		}
+	}
+
+	constructor(t: string, p: number) {
+		this.title = t;
+		this._price = p;
+	}
+
+	getPriceWithTax(tax: number) {
+		return this._price * (1 + tax);
+	}
+}
