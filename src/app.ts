@@ -53,3 +53,45 @@ console.log(
 	'extractAndConvert --> ',
 	extractAndConvert({ name: 'Gery' }, 'name')
 );
+
+class DataStorage<T extends string | number | boolean> {
+	private data: T[] = [];
+
+	addItem(item: T) {
+		this.data.push(item);
+	}
+
+	removeItem(item: T) {
+		if (this.data.indexOf(item) === -1) {
+			return;
+		}
+		this.data.splice(this.data.indexOf(item), 1);
+	}
+
+	getItems() {
+		return [...this.data];
+	}
+}
+
+const textStorage = new DataStorage<string>();
+// textStorage.addItem(10); // will return an error
+textStorage.addItem('Gery');
+textStorage.addItem('Enko');
+textStorage.addItem('Hawsen');
+textStorage.removeItem('Gery');
+
+console.log('textStorage --> ', textStorage.getItems());
+
+const numberStorage = new DataStorage<number | string>();
+numberStorage.addItem(123);
+numberStorage.addItem('123');
+
+/*
+const objStorage = new DataStorage<object>();
+const maxObj = { name: 'Max' };
+objStorage.addItem(maxObj);
+objStorage.addItem({ name: 'John' });
+// ..
+objStorage.removeItem(maxObj);
+console.log('objStorage --> ', objStorage.getItems());
+*/
