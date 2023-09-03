@@ -95,3 +95,28 @@ objStorage.addItem({ name: 'John' });
 objStorage.removeItem(maxObj);
 console.log('objStorage --> ', objStorage.getItems());
 */
+
+interface CourseGoal {
+	title: string;
+	description: string;
+	completeUntil: Date;
+}
+
+function createCourseGoal(
+	title: string,
+	description: string,
+	date: Date
+): CourseGoal {
+	// return { title: title, description: description, completeUntil: date };
+	// step by step
+	let courseGoal: Partial<CourseGoal> = {};
+	courseGoal.title = title;
+	courseGoal.description = description;
+	courseGoal.completeUntil = date;
+	return courseGoal as CourseGoal;
+}
+
+const names: Readonly<Array<string>> = ['Max', 'Anna'];
+// below methods will return an error
+// name.push('push');
+// name.pop()
