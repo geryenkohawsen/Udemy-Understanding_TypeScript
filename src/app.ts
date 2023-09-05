@@ -2,7 +2,7 @@
 function Logger(logString: string) {
   console.log('LOGGER FACTORY');
   return function (constructor: Function) {
-    console.log(logString);
+    console.log('logString', logString);
     console.log('constructor --> ', constructor);
   };
 }
@@ -47,6 +47,7 @@ function Log(target: any, propertyName: string | Symbol) {
   console.log(propertyName);
 }
 
+// getter setter decorator (receive 3 arguments)
 function Log2(target: any, name: string, descriptor: PropertyDescriptor) {
   console.log('Accessor decorator');
   console.log('target → ', target);
@@ -54,6 +55,7 @@ function Log2(target: any, name: string, descriptor: PropertyDescriptor) {
   console.log('descriptor → ', descriptor);
 }
 
+// method decorator (receive 3 arguments)
 function Log3(
   target: any,
   name: string | Symbol,
@@ -65,6 +67,7 @@ function Log3(
   console.log('descriptor → ', descriptor);
 }
 
+// parameter decorator (receive 3 arguments)
 function Log4(target: any, name: string | Symbol, position: number) {
   console.log('Parameter decorator');
   console.log('target → ', target);
@@ -96,3 +99,7 @@ class Product {
     return this._price * (1 + tax);
   }
 }
+
+// Decorator are executed when a class is defined, NOT runtime
+const p1 = new Product('Book', 19);
+const p2 = new Product('Book2', 39);
