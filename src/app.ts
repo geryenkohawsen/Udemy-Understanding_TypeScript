@@ -55,15 +55,22 @@ function Log(target: any, propertyName: string | Symbol) {
   console.log(propertyName);
 }
 
-// getter setter decorator (receive 3 arguments)
-function Log2(target: any, name: string, descriptor: PropertyDescriptor) {
+// getter setter decorator (receive 3 arguments), also can return a new PropertyDescriptor.
+function Log2(
+  target: any,
+  name: string,
+  descriptor: PropertyDescriptor
+): PropertyDescriptor {
   console.log('Accessor decorator');
   console.log('target → ', target);
   console.log('name → ', name);
   console.log('descriptor → ', descriptor);
+  return {
+    enumerable: true,
+  };
 }
 
-// method decorator (receive 3 arguments)
+// method decorator (receive 3 arguments), also can return a new PropertyDescriptor.
 function Log3(
   target: any,
   name: string | Symbol,
